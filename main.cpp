@@ -8,6 +8,7 @@ int main()
      base_log* bl=base_log::get_base_log();
      string res=bl->getlogpath();
      cout<<res<<endl;
+     base_log::del_base_log();
      cin.get();
      cin.get();
      return 0;

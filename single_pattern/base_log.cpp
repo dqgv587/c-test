@@ -14,6 +14,14 @@ base_log* base_log::get_base_log(){
 	return baselog;
 }
 
+void base_log::del_base_log()
+{
+	if(baselog!=nullptr)
+	{
+		delete baselog;
+	}
+}
+
 string base_log::getlogpath()
 {
 	return logpath;

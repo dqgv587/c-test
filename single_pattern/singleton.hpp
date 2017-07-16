@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 class Singleton {
 public:
     static Singleton& Instance() {
@@ -5,7 +7,13 @@ public:
         return S;
     }
 
+	void prints()
+	{
+		s++;
+		cout<<s<<endl;
+	}
 private:
-    Singleton();
-    ~Singleton();
+    Singleton(){};
+    ~Singleton(){};
+	int s=1;
 };

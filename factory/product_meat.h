@@ -5,10 +5,15 @@
 #include <string>
 using namespace std;
 
+class abstract_product_meat;
+class product_pork;
+class product_beef;
+
 class abstract_product_meat
 {
 public:
 	virtual ~abstract_product_meat(){};
+	abstract_product_meat(){};
 	virtual double eat(double _weight);
 	virtual string getinfo()=0;
 	

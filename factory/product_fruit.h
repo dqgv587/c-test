@@ -5,12 +5,17 @@
 #include <string>
 using namespace std;
 
+class abstract_product_fruit;
+class product_apple;
+class product_orange;
+
 class abstract_product_fruit
 {
 public:
 	virtual ~abstract_product_fruit(){};
-	static enum Color{Red, orange, yellow, green, blue, indigo, violet};
+	abstract_product_fruit(){};
 	virtual double eat(double _weight);
+	enum Color{red, orange, yellow, green, blue, indigo, violet};
 	virtual string getinfo()=0;
 	
 private:

@@ -93,16 +93,34 @@ void test_prototype()
 	return ;
 }*/
 
-#include "./template_function/companya_resume.hpp"
+/*#include "./template_function/companya_resume.hpp"
 #include "./template_function/companyb_resume.hpp"
 void test_template_function()
 {
+	//模板函数模式
 	resume * rse=new companya_resume();
 	resume * rsb=new companyb_resume();
 	rse->filltext();
 	rsb->filltext();
 	return ;
-}
+}*/
+
+/*#include "./builder/director.hpp"
+#include "./builder/carbuilder.hpp"
+#include "./builder/busbuilder.hpp"
+void test_builder()
+{
+	//建造者模式
+	builder * bd=new carbuilder();
+	builder * bd2=new busbuilder();
+	director* d1=new director(bd);
+	director* d2=new director(bd2);
+	d1->create();d2->create();
+	delete bd;delete bd2;
+	delete d1;delete d2;
+	bd=NULL;bd2=NULL;d1=NULL;d2=NULL;
+	return ;
+}*/
 
 int main()
 {
@@ -122,7 +140,13 @@ int main()
 	 //test_prototype();
 	 
 	 //模板方法模式
-	 test_template_function();
+	 //test_template_function();
+	 
+	 //建造者模式
+	 //test_builder();
+	 
+	 //外观模式
+	 
 	 
      cin.get();
      cin.get();

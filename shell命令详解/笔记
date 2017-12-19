@@ -1,0 +1,46 @@
+shell命令行使用; 形成命令表. 例如 cd doc/ ; ls -l   (进入doc目录显示目录下所有文件/文件夹)
+
+输入输出重定向: 
+输出转向符号 > : cat>file 创建新的文件  cat>>file  加到文件的尾部
+输入转向符号 < : cat<file (或者cat file) 将file文件内容输出到屏幕上
+
+cat file & (&将cat放到后台执行,返回进程号)  clear=ctrl+l
+
+cat file | sort 获得file内容进行排序(|管道符 将前面的输出当做后面输入)
+
+awk -F"$"  '{for(i=1;i<=NF;i++){print $i}}' file |uniq -c| sort -t ' ' -k1nr |awk '{print $2,$1}' | cat >file1  蚂蚁金服电面题目计数逆序存储
+awk命令:分词,文本分析工具 (类似的还有sed编辑 grep查找)
+uniq命令:去重计数,并输出
+sort命令:排序
+sed命令:正则匹配替换
+grep命令:正则匹配抽取指定模式的行
+
+文件存取控制模式:r,w,x,u(文件拥有者),g(同组用户),o(其他用户)
+lp:打印文件
+file:确认文件类型,文件头部信息
+dirname:获得文件所在文件夹
+readlink:(-f -e)读取软连接对应的实际文件路径
+
+id -u 查询当前用户id号 例如 root是0
+
+df显示磁盘空间
+du显示磁盘使用
+lscpu cpu和处理单元的信息
+lspci是另一个命令行工具，可以用来列出所有的 PCI 总线，还有与 PCI 总线相连的设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。
+lshw是一个通用的工具，可以列出多种硬件单元的详细或者概要的信息，比如 CPU、内存、usb 控制器、硬盘等
+lsscsi 可以列出像硬盘和光驱等 scsi/sata 设备的信息
+lsusb命令能够列出 USB 控制器和与 USB 控制器相连的设备的详细信息
+free命令可以查看系统中使用的、闲置的和 RAM 的总体数量。
+hdparm命令可以用来显示像硬盘这样的 sata 设备的信息。
+
+sleep挂起一段时间
+time统计作业执行时间 例如: time ls -l
+wait命令:等待进程完成
+kill [-signal] pid (signal中15是普通,9是强制,kill -l查看signal)   (killall杀死指定名字的进程例如:killall -9 firefox) (pkill 指定进程组)
+nohup ./a.sh& 忽略禁止挂起和退出,强制执行
+
+
+
+
+
+

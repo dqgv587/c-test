@@ -47,8 +47,7 @@ pthread_exit (status)
 公共网关接口（CGI），是一套标准，定义了信息是如何在 Web 服务器和客户端脚本之间进行交换的。
 cgicc-X.X.X
 
-
-
+c++逆向工程分析工具：OllyDBG（调试器），PEid（PE文件分析，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件），IDA（反汇编静态分析工具）
 
 
 

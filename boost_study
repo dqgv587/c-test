@@ -1,0 +1,84 @@
+io_servie实现了一个任务队列，这里的任务就是void(void)的函数。Io_servie最常用的两个接口是post和run，post向任务队列中投递任务，run是执行队列中的任务，直到全部执行完毕，并且run可以被N个线程调用。io_service是完全线程安全的队列。
+
+boost::asio::io_service使用时的注意事项：
+①请让boost::asio::io_service和boost::asio::io_service::work搭配使用。
+②想让event按照进入(strand)时的顺序被执行，需要boost::asio::io_service要和boost::asio::io_service::strand搭配使用。
+③一般情况下，io_service的成员函数的使用顺序：
+boost::asio::io_service构造，
+boost::asio::io_service::run()，
+boost::asio::io_service::stop()，
+boost::asio::io_service::reset()，
+boost::asio::io_service::run()，
+......
+boost::asio::io_service析构，
+④不论有没有使用io_service::work，run()都会执行完io_service里面的event，(若没有用work，run就会退出)。
+⑤一个新创建的io_service不需要执行reset()函数。
+⑥在调用stop()后，在调用run()之前，请先调用reset()函数。
+⑦函数stop()和reset()并不能清除掉io_service里面尚未执行的event。
+我个人认为，也只有析构掉io_service，才能清空它里面的那些尚未执行的event了。(可以用智能指针)。
+⑧函数stop(),stopped(),reset(),很简单，请单步调试，以明白它在函数里做了什么。
+⑨boost的.hpp文件里面(一般情况下)有各个函数的使用说明，你可以随时查看。
+
+boost::filesysytem::path     库为对路径、文件和目录进行查询和操作提供了可移植的工具
+
+windows event 其中一个线程等待到信号之后，重置事件，进行数据处理，处理完成之后再次触发事件。另一个线程收到新的信号，同样处理并重置事件
+
+std::getenv(env_var)   搜索与env_var字符串相匹配的主机环境（操作系统）提供的环境列表，返回该列表成员。
+
+GetIpAddrTable函数返回与系统关联的IP地址信息，填充一个MIB_IPADDRTABLE结构指针。
+
+time_t  time1 = time(NULL);//获取系统时间，单位为秒;
+
+Boost.Interprocess 可以实现在共享内存、文件映射中保存vector、map等STL对象，并且可以使用自定义的类
+
+new boost::asio::io_service::work(* io_service_)   work关联io_service
+
+shared_ptr的reset函数是swap功能
+
+#include <Iphlpapi.h>     #pragma comment(lib, "Iphlpapi.lib")    iphleper查询ip地址
+
+如果函数的参数可以是任意类型指针，那么应声明其参数为void *
+
+ boost::function<void(bool)> call_back = &functionA      //实现回调函数
+ bind(f, _2, _1)(x, y);                 // f(y, x)
+ 
+C++11提供了对匿名函数的支持,称为Lambda函数(也叫Lambda表达式). Lambda表达式具体形式如下:
+	[capture](parameters)->return-type{body}
+	
+C++11 中,可在想要 “禁止使用” 的特殊成员函数声明后加 “= delete”
+
+template <typename PacketHandler>
+void register_peer_packet(PacketHandler & handler)
+{
+	handler.template register_packet<ErrorPacket>();
+}
+模板参数handler依赖于模板参数PacketHandler，所以调用别的模板参数时，需要加handler.template
+
+boost::asio::ip::tcp::acceptor 提供各种函数，例如绑定，监听某个端口
+
+boost::filesystem  方便的文件操作
+
+boost::asio::ip::multicast::join_group(ip)  组播加入群组
+
+InterlockedExchangeAdd、WaitForSingleObject等函数，windows的多线程的函数；我们可以将dwMilliseconds设置为INFINITE,INFINITE为0xFFFFFFFF, 传递该值表示直到某个对象或线程被完成才继续执行主线程。
+
+boost::asio::streambuf 用来实现request和reponse
+
+tcp::resolver::query、tcp::resolver、boost::asio::ip::tcp::endpoint和tcp::resolver::iterator等用来存储socket的信息
+
+变量前直接加（void）的语句，这只是一种防止编译器编译时报警告的用法。
+
+boost/interprocess/windows_shared_memory
+
+boost::dynamic_bitset  //动态增长的bitset
+
+boost::intrusive_ptr一种“侵入式”的引用计数指针，它实际并不提供引用计数功能，而是要求被存储的对象自己实现引用计数功能 
+
+SFINAE是Substitution Failure Is Not An Error的缩略语，模板编程，如果替换后，代码变成了无效代码，编译器也不应该抛出错误，而是继续寻找其他的替换方案
+假如有一个特化会导致编译时错误(即出现编译失败)，只要还有别的选择可以被选择，那么就无视这个特化错误而去选择另外的可选选择。
+
+disable_if和enable_if 筛选模板函数排除或加入到集合中
+
+C++ 链接操作，将源代码链接在一起生成可执行文件。
+
+

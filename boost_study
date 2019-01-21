@@ -66,7 +66,7 @@ boost::asio::streambuf 用来实现request和reponse
 
 tcp::resolver::query、tcp::resolver、boost::asio::ip::tcp::endpoint和tcp::resolver::iterator等用来存储socket的信息
 
-变量前直接加（void）的语句，这只是一种防止编译器编译时报警告的用法。
+变量前直接加（void）的语句，这只是一种防止编译器编译时报警告的用法。int i;(void)i;
 
 boost/interprocess/windows_shared_memory
 
@@ -80,5 +80,28 @@ SFINAE是Substitution Failure Is Not An Error的缩略语，模板编程，如�
 disable_if和enable_if 筛选模板函数排除或加入到集合中
 
 C++ 链接操作，将源代码链接在一起生成可执行文件。
+
+noexcept（表示其修饰的函数不会抛出异常）， std::move语句可以将左值变为右值而避免拷贝构造，转化为&&右值引用，从而不要调用copy构造函数。
+
+要解决环形引用的问题，没有特别好的办法，一般都是在可能出现环形引用的地方使用weak_ptr来代替shared_ptr
+
+typeid()用来获取变量或模板的类型名   thread_local的变量，当前线程仅有一个，类似只属于该线程的static
+
+std::advance（iter，int） 给iter 一个偏移
+
+Boost.Program_options和getopt系列函数一样，可以抓起命令行参数
+
+使用do{ } while(0)的好处
+1.替代{},实现局部作用域.在一些C的实现里也可以用.
+2.避免使用GOTO,用break做跳出.
+
+boost::asio::ip::tcp::resolver 域名解析获得该域名的ip和接口
+
+定义include、lib和libpath等环境变量，在编译程序时会用到。
+
+ssdp简单服务发现协议，用于发现局域网里面的设备和服务。
+
+
+
 
 

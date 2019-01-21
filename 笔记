@@ -49,6 +49,44 @@ cgicc-X.X.X
 
 c++逆向工程分析工具：OllyDBG（调试器），PEid（PE文件分析，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件），IDA（反汇编静态分析工具）
 
+可以看出静态成员函数的性质大体如下： 
+*静态成员函数是类中特殊的成员函数 
+*静态成员函数属于整个类所有 
+*可以通过类名（作用域访问）直接访问公有静态成员函数 
+*可以通过对象名访问公有静态成员函数
+*静态成员函数不能访问普通成员变量（函数），需通过对象间接访问成员变量（函数） 
+
+asni和unicode的主要区别，前者是单字节，后者是双字节。
+
+webrtc传输sdp流程：offer先调用offerForConstraints得到自己的offerSdp，setLocalDescription(offerSdp)，把offerSdp发给远程answer，同时设置自己发送视频的最大码率。
+answer收到offerSdp后，setRemoteDescription(offerSdp)。answerForConstraints得到自己的answerSdp，setLocalDescription(answerSdp)，把answerSdp发送给offer，同时设置自己发送视频的最大码率。
+offer收到answerSdp后，setRemoteDescription(answerSdp)。
+以上很多调用的WebRTC API都产生回调，回调可能返回错误，此时都要处理错误，一般就是把错误传递给上层，然后关闭整个会话。
+
+实际网络请求底层接口：PhysicalSocket.cc
+
+c++14 std::optional<T>  optional<T>内部存储空间可能存储了T类型的值也可能没有存储T类型的值，只有当optional被T初始化之后，这个optional才是有效的，否则是无效的，它实现了未初始化的概念。当函数会返回无效对象时，可以用这个。
+
+c++11多线程如果std::promise对象在赋值之前被销毁，那么管理的std::future对象上的get()调用将会抛出异常。
+除此之外，如果想要线程在不同时间点返回多个值，只需要在线程中传输多个std::promise对象，并从相关的多个std::futur对象中获取多个返回值
+
+hash解决冲突的方法有：
+1、线性探测 +1  2、二次探测  +1^2, +2^2, +3^2......  3、开链法   一个个bucket
+
+开发一个新的nginx模块
+1、编写config文件
+2、定义module的结构体、定义ctx（各种时期回调函数）、定义commands（填充该模块conf）。
+3、实现各种命令对应的handler
+
+socket编程：发送端将本机的数据转换成网络的字节顺序（调用API函数htonl或htons），然后发送；接收端收到网络数据后，先将数据转换成本机的字节顺序（调用API函数ntohl或ntohs）。
+
+ip fou将tcp加上udp信息，tcp包打成udp包
+
+编译期限制栈大小，和系统限制栈深度根本是两回事。系统限制栈深是限制进程主线程的栈深，限制的是整个函数调用链的最大栈深，这个栈深是函数调用链上各个函数栈帧大小之和。编译期限制栈大小是限制单个函数栈帧的大小。
+对于多线程程序来说，一个进程下的所有线程有自己独立的栈，但是堆是共享进程的堆。堆栈地址最大值×线程数目最大值<用户态内存地址最大值
+
+
+
 
 
 

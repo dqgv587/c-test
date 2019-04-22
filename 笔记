@@ -85,8 +85,52 @@ ip fou将tcp加上udp信息，tcp包打成udp包
 编译期限制栈大小，和系统限制栈深度根本是两回事。系统限制栈深是限制进程主线程的栈深，限制的是整个函数调用链的最大栈深，这个栈深是函数调用链上各个函数栈帧大小之和。编译期限制栈大小是限制单个函数栈帧的大小。
 对于多线程程序来说，一个进程下的所有线程有自己独立的栈，但是堆是共享进程的堆。堆栈地址最大值×线程数目最大值<用户态内存地址最大值
 
+int  *p[N]表示指针数组，也就是说定义了N个不同指向int的指针。
+int (*p)[N]表示定义一个指针，指向一个int[N]型的指针。
+int **p 表示定义一个指向指针的指针。
+
+[][] 与 **在内存中的形式是不一样的，[][]是连续内存存储，**是指向指针的指针不是连续内存存储。
+
+enum class组合具有class封装性的特性，作用域是确定的; 可以指定底层数据类型 enum class A:int; 不能隐式转换
+
+((void *)-1)是把-1转换成指针0xFFFFFFFF
+
+xinetd提供服务如下：
+① 标准Internet服务：telnet、ftp。
+② 信息服务：finger、netstat、systat。
+③ 邮件服务：imap、imaps、pop2、pop3、pops。
+④ RPC服务：rquotad、rstatd、rusersd、sprayd、walld。
+⑤ BSD服务：comsat、exec、login、ntalk、shell、talk。
+⑥ 内部服务：chargen、daytime、echo、servers、services、time。
+⑦ 安全服务：irc。
+⑧ 其他服务：name、tftp、uucp
+
+表达式存在有符号类型和无符号类型时所有的操作对象都自动转换为无符号类型
+
+在函数调用前加(void)，例如(void)strcpy(dest,src),为了告诉静态检查工具，这个返回值是没有处理，但是确实不用处理，这么写是为了实现代码规范。
+
+C++ 11 raw string(字面量) R"(XXX)",防止XXX被转义。使用正则匹配的时候不用手动添加转义符号（\）。
+
+clock表示当前时钟数，CLOCKS_PER_SEC表示每秒时钟数
+
+预编译头的使用，如果工程很大，头文件很多，而有几个头文件又是经常要用的，那么 
+1，把这些头文件全部写到一个头文件里面去，比如写到common.h 
+2，写一个common.c，里面只一句话：#include "common.h " ，为了生成pch预编译文件
+3，对于common.c，在【属性】里面设置【创建预编译头】，对于其他.c文件，设置【使用预编译头】
+编译common.h内的.h生成中间文件（pch），当别的地方使用common.h时候不用在重复编译，直接使用pch文件就行。
 
 
-
+服务器端调用socket()通信过程： 
+socket()—>bind()—>listen()—>accept()—>recv()/recvfrom()—>send()/sendto(); 
+调用socket()函数创建一个套接字。 
+调用bind()函数把自己绑定在一个地址上。 
+调用listen()函数监听连接。 
+调用accept()函数接受所有引入的请求。 
+调用recvfrom()函数获取引入的信息然后调用sendto()回答。
+客户端调用socket()通信过程： 
+socket()—>connect()—>recv()/recvfrom()—>send()/sendto(); 
+调用socket()函数创建一个套接字。 
+调用connect()发出连接请求； 
+调用recvfrom()函数获取引入的信息然后调用sendto()回答。
 
 

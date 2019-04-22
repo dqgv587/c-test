@@ -43,7 +43,9 @@ shared_ptr的reset函数是swap功能
  bind(f, _2, _1)(x, y);                 // f(y, x)
  
 C++11提供了对匿名函数的支持,称为Lambda函数(也叫Lambda表达式). Lambda表达式具体形式如下:
-	[capture](parameters)->return-type{body}
+1、	[capture](parameters)->return-type{body}
+2、	[capture list] {function body}
+3、 [capture list] (params list) {function body}
 	
 C++11 中,可在想要 “禁止使用” 的特殊成员函数声明后加 “= delete”
 
@@ -100,6 +102,8 @@ boost::asio::ip::tcp::resolver 域名解析获得该域名的ip和接口
 定义include、lib和libpath等环境变量，在编译程序时会用到。
 
 ssdp简单服务发现协议，用于发现局域网里面的设备和服务。
+
+boost::mutex::scoped_lock  mlock(boost::mutex mux)，的构造函数时lock，析构函数时unlock。所以常用在一个生存周期里面用
 
 
 

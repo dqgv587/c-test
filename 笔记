@@ -133,4 +133,6 @@ socket()—>connect()—>recv()/recvfrom()—>send()/sendto();
 调用connect()发出连接请求； 
 调用recvfrom()函数获取引入的信息然后调用sendto()回答。
 
+logrotate分割日志。crontab定时执行
+
 
